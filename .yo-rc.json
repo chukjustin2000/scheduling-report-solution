@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.scheduling.report",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "ShedulingSolution",
+    "packageName": "com.scheduling.report",
+    "packageFolder": "com/scheduling/report",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGU2ZTE4ZTYxZGJjZDE0ODYyZjUxNjgyZjczNjRlOGUzM2VhMTFjMGU5MGM3ZDczMDcwYmY4YWVmYjNhYzBkOTMwMDgzNjRjMjg4MDNjN2EwMDgyNDA4NzRmNzE1NzNmMjZkMmQ1ZWY4NDg5ZjQ3YTZiZGUwZTFkYWRiM2ExN2I=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1598276088376,
+    "testFrameworks": ["protractor"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "zh-cn", "fr", "ja"],
+    "blueprints": []
+  }
+}
