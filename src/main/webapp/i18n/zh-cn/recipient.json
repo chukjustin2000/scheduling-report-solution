@@ -1,0 +1,26 @@
+{
+  "shedulingSolutionApp": {
+    "recipient": {
+      "home": {
+        "title": "Recipients",
+        "createLabel": "创建新 Recipient",
+        "createOrEditLabel": "创建或编辑 Recipient",
+        "notFound": "No Recipients found"
+      },
+      "created": "Recipient {{ param }} 创建成功",
+      "updated": "Recipient {{ param }} 更新成功",
+      "deleted": "Recipient {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Recipient {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Recipient"
+      },
+      "name": "Name",
+      "email": "Email",
+      "address": "Address",
+      "phone": "Phone",
+      "report": "Report"
+    }
+  }
+}

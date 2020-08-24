@@ -1,0 +1,29 @@
+entity Report {
+	name String required
+	occurenceMode OccurenceMode
+	oneOffSchedule ZonedDateTime
+	timeFromSchedule ZonedDateTime
+	timeToSchedule ZonedDateTime
+	timeNextSchedule ZonedDateTime
+	document ImageBlob maxbytes(500000)
+	description String
+}
+
+enum OccurenceMode {
+    ONEOFF, CANCEL, CERTAINDATE, RECURRING
+}
+
+entity Recipient {
+	name String required
+	email String
+	address String
+	phone String
+}
+
+relationship OneToMany {
+	Report{recipients(name)} to Recipient
+}
+
+paginate Report with pagination
+paginate Recipient with pagination
+service * with serviceClass

@@ -1,0 +1,65 @@
+{
+  "name": "Report",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "occurenceMode",
+      "fieldType": "OccurenceMode",
+      "fieldValues": "ONEOFF,CANCEL,CERTAINDATE,RECURRING"
+    },
+    {
+      "fieldName": "oneOffSchedule",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "timeFromSchedule",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "timeToSchedule",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "timeNextSchedule",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "document",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": [
+        "maxbytes"
+      ],
+      "fieldValidateRulesMaxbytes": "500000"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "recipient",
+      "otherEntityRelationshipName": "report",
+      "relationshipName": "recipients"
+    }
+  ],
+  "changelogDate": "20200824160312",
+  "entityTableName": "report",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

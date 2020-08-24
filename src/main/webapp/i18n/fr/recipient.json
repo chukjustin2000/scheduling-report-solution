@@ -1,0 +1,26 @@
+{
+  "shedulingSolutionApp": {
+    "recipient": {
+      "home": {
+        "title": "Recipients",
+        "createLabel": "Créer un nouveau Recipient",
+        "createOrEditLabel": "Créer ou éditer un Recipient",
+        "notFound": "Aucun Recipient trouvé"
+      },
+      "created": "Un nouveau Recipient a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Recipient avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Recipient avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Recipient {{ id }} ?"
+      },
+      "detail": {
+        "title": "Recipient"
+      },
+      "name": "Name",
+      "email": "Email",
+      "address": "Address",
+      "phone": "Phone",
+      "report": "Report"
+    }
+  }
+}

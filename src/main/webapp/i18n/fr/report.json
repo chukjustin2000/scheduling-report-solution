@@ -1,0 +1,30 @@
+{
+  "shedulingSolutionApp": {
+    "report": {
+      "home": {
+        "title": "Reports",
+        "createLabel": "Créer un nouveau Report",
+        "createOrEditLabel": "Créer ou éditer un Report",
+        "notFound": "Aucun Report trouvé"
+      },
+      "created": "Un nouveau Report a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Report avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Report avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Report {{ id }} ?"
+      },
+      "detail": {
+        "title": "Report"
+      },
+      "name": "Name",
+      "occurenceMode": "Occurence Mode",
+      "oneOffSchedule": "One Off Schedule",
+      "timeFromSchedule": "Time From Schedule",
+      "timeToSchedule": "Time To Schedule",
+      "timeNextSchedule": "Time Next Schedule",
+      "document": "Document",
+      "description": "Description",
+      "recipients": "Recipients"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "shedulingSolutionApp": {
+    "report": {
+      "home": {
+        "title": "Reports",
+        "createLabel": "Report を追加",
+        "createOrEditLabel": "Reportを追加または編集",
+        "notFound": "No Reports found"
+      },
+      "created": "A new Report is created with identifier {{ param }}",
+      "updated": "A Report is updated with identifier {{ param }}",
+      "deleted": "A Report is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Report {{ id }}を削除してもよろしいですか？"
+      },
+      "detail": {
+        "title": "Report"
+      },
+      "name": "Name",
+      "occurenceMode": "Occurence Mode",
+      "oneOffSchedule": "One Off Schedule",
+      "timeFromSchedule": "Time From Schedule",
+      "timeToSchedule": "Time To Schedule",
+      "timeNextSchedule": "Time Next Schedule",
+      "document": "Document",
+      "description": "Description",
+      "recipients": "Recipients"
+    }
+  }
+}
