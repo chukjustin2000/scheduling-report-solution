@@ -37,8 +37,13 @@ public class RecipientService {
     public Recipient save(Recipient recipient) {
         log.debug("Request to save Recipient : {}", recipient);
         Report report = recipient.getReport();
-        report.addRecipients(recipient);
-        reportService.save(report);
+        Optional<Report>reportOptional = Optional.ofNullable(report);
+        if(reportOptional.isPresent()) {
+            Report report1 =reportOptional.get();
+            report1.addRecipients(recipient);
+            reportService.save(report1);
+        }
+
         return recipientRepository.save(recipient);
     }
 

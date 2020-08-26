@@ -38,6 +38,9 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": ["en", "zh-cn", "fr", "ja"],
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "sheduling-solution",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "13"
   }
 }
