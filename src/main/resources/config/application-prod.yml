@@ -33,7 +33,7 @@ spring:
       enabled: false
   data:
     mongodb:
-      uri: mongodb://localhost:27017
+      uri: mongodb://heroku_s7w2j0xt:qgsmna6difcccbu8s9lm5eug5v@ds035844.mlab.com:35844/heroku_s7w2j0xt
       database: ShedulingSolution
   mail:
     host: localhost
