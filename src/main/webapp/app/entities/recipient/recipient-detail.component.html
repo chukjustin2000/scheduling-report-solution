@@ -1,48 +1,44 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="recipient">
-            <h2><span jhiTranslate="shedulingSolutionApp.recipient.detail.title">Recipient</span> {{ recipient.id }}</h2>
+  <div class="col-8">
+    <div *ngIf="recipient">
+      <h2><span jhiTranslate="shedulingSolutionApp.recipient.detail.title">Recipient</span></h2>
 
-            <hr>
+      <hr />
 
-            <jhi-alert-error></jhi-alert-error>
+      <jhi-alert-error></jhi-alert-error>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="shedulingSolutionApp.recipient.name">Name</span></dt>
-                <dd>
-                    <span>{{ recipient.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.recipient.email">Email</span></dt>
-                <dd>
-                    <span>{{ recipient.email }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.recipient.address">Address</span></dt>
-                <dd>
-                    <span>{{ recipient.address }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.recipient.phone">Phone</span></dt>
-                <dd>
-                    <span>{{ recipient.phone }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.recipient.report">Report</span></dt>
-                <dd>
-                    <div *ngIf="recipient.report">
-                        <a [routerLink]="['/report', recipient.report?.id, 'view']">{{ recipient.report?.id }}</a>
-                    </div>
-                </dd>
-            </dl>
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="shedulingSolutionApp.recipient.name">Name</span></dt>
+        <dd>
+          <span>{{ recipient.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.recipient.email">Email</span></dt>
+        <dd>
+          <span>{{ recipient.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.recipient.address">Address</span></dt>
+        <dd>
+          <span>{{ recipient.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.recipient.phone">Phone</span></dt>
+        <dd>
+          <span>{{ recipient.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.recipient.report">Report</span></dt>
+        <dd>
+          <div *ngIf="recipient.report">
+            <a [routerLink]="['/report', recipient.report?.id, 'view']">{{ recipient.report?.id }}</a>
+          </div>
+        </dd>
+      </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
+      <button type="submit" (click)="previousState()" class="btn btn-info">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
 
-            <button type="button"
-                    [routerLink]="['/recipient', recipient.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
-        </div>
+      <button type="button" [routerLink]="['/recipient', recipient.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
     </div>
+  </div>
 </div>

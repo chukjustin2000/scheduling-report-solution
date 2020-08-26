@@ -14,6 +14,9 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { FormsModule } from '@angular/forms';
+
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
@@ -23,7 +26,9 @@ import { ErrorComponent } from './layouts/error/error.component';
     ShedulingSolutionHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     ShedulingSolutionEntityModule,
-    ShedulingSolutionAppRoutingModule
+    ShedulingSolutionAppRoutingModule,
+    FormsModule,
+    NgSelectModule
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent]

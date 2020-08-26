@@ -1,6 +1,7 @@
 package com.scheduling.report.service;
 
 import com.scheduling.report.domain.Recipient;
+import com.scheduling.report.domain.Report;
 import com.scheduling.report.repository.RecipientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,11 @@ public class RecipientService {
     private final Logger log = LoggerFactory.getLogger(RecipientService.class);
 
     private final RecipientRepository recipientRepository;
+    private final ReportService reportService;
 
-    public RecipientService(RecipientRepository recipientRepository) {
+    public RecipientService(RecipientRepository recipientRepository, ReportService reportService) {
         this.recipientRepository = recipientRepository;
+        this.reportService = reportService;
     }
 
     /**
@@ -33,6 +36,9 @@ public class RecipientService {
      */
     public Recipient save(Recipient recipient) {
         log.debug("Request to save Recipient : {}", recipient);
+        Report report = recipient.getReport();
+        report.addRecipients(recipient);
+        reportService.save(report);
         return recipientRepository.save(recipient);
     }
 

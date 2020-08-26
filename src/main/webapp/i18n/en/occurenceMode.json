@@ -2,9 +2,9 @@
   "shedulingSolutionApp": {
     "OccurenceMode": {
       "null": "",
-      "ONEOFF": "ONEOFF",
+      "ONEOFF": "ONE OFF",
       "CANCEL": "CANCEL",
-      "CERTAINDATE": "CERTAINDATE",
+      "CERTAINDATE": "CERTAIN DATE",
       "RECURRING": "RECURRING"
     }
   }

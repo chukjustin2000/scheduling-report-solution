@@ -34,8 +34,7 @@ public class Recipient implements Serializable {
     private String phone;
 
     @DBRef
-    @Field("report")
-    @JsonIgnoreProperties(value = "recipients", allowSetters = true)
+    @Field("report") @JsonIgnoreProperties(value = "recipients", allowSetters = true)
     private Report report;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

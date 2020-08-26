@@ -40,7 +40,7 @@
                     <td>{{ recipient.phone }}</td>
                     <td>
                         <div *ngIf="recipient.report">
-                            <a [routerLink]="['/report', recipient.report?.id, 'view']" >{{ recipient.report?.id }}</a>
+                            <a [routerLink]="['/report', recipient.report?.id, 'view']" >{{ recipient.report?.name }}</a>
                         </div>
                     </td>
                     <td class="text-right">

@@ -7,9 +7,10 @@ import { ReportDetailComponent } from './report-detail.component';
 import { ReportUpdateComponent } from './report-update.component';
 import { ReportDeleteDialogComponent } from './report-delete-dialog.component';
 import { reportRoute } from './report.route';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  imports: [ShedulingSolutionSharedModule, RouterModule.forChild(reportRoute)],
+  imports: [ShedulingSolutionSharedModule, RouterModule.forChild(reportRoute), NgSelectModule],
   declarations: [ReportComponent, ReportDetailComponent, ReportUpdateComponent, ReportDeleteDialogComponent],
   entryComponents: [ReportDeleteDialogComponent]
 })

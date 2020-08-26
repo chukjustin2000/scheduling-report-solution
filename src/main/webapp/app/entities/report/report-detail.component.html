@@ -1,63 +1,63 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="report">
-            <h2><span jhiTranslate="shedulingSolutionApp.report.detail.title">Report</span> {{ report.id }}</h2>
+  <div class="col-8">
+    <div *ngIf="report">
+      <h2><span jhiTranslate="shedulingSolutionApp.report.detail.title">Report</span></h2>
 
-            <hr>
+      <hr />
 
-            <jhi-alert-error></jhi-alert-error>
+      <jhi-alert-error></jhi-alert-error>
 
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="shedulingSolutionApp.report.name">Name</span></dt>
-                <dd>
-                    <span>{{ report.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.occurenceMode">Occurence Mode</span></dt>
-                <dd>
-                    <span jhiTranslate="{{ 'shedulingSolutionApp.OccurenceMode.' + report.occurenceMode }}">{{ report.occurenceMode }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.oneOffSchedule">One Off Schedule</span></dt>
-                <dd>
-                    <span>{{ report.oneOffSchedule }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.timeFromSchedule">Time From Schedule</span></dt>
-                <dd>
-                    <span>{{ report.timeFromSchedule }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.timeToSchedule">Time To Schedule</span></dt>
-                <dd>
-                    <span>{{ report.timeToSchedule }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.timeNextSchedule">Time Next Schedule</span></dt>
-                <dd>
-                    <span>{{ report.timeNextSchedule }}</span>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.document">Document</span></dt>
-                <dd>
-                    <div *ngIf="report.document">
-                        <a (click)="openFile(report.documentContentType, report.document)">
-                            <img [src]="'data:' + report.documentContentType + ';base64,' + report.document" style="max-width: 100%;" alt="report image"/>
-                        </a>
-                        {{ report.documentContentType }}, {{ byteSize(report.document) }}
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="shedulingSolutionApp.report.description">Description</span></dt>
-                <dd>
-                    <span>{{ report.description }}</span>
-                </dd>
-            </dl>
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="shedulingSolutionApp.report.name">Name</span></dt>
+        <dd>
+          <span>{{ report.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.occurenceMode">Occurence Mode</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'shedulingSolutionApp.OccurenceMode.' + report.occurenceMode }}">{{ report.occurenceMode }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.oneOffSchedule">One Off Schedule</span></dt>
+        <dd>
+          <span>{{ report.oneOffSchedule | date: 'medium' }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.timeFromSchedule">Time From Schedule</span></dt>
+        <dd>
+          <span>{{ report.timeFromSchedule | date: 'medium' }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.timeToSchedule">Time To Schedule</span></dt>
+        <dd>
+          <span>{{ report.timeToSchedule | date: 'medium' }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.timeNextSchedule">Time Next Schedule</span></dt>
+        <dd>
+          <span>{{ report.timeNextSchedule | date: 'medium' }}</span>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.document">Document</span></dt>
+        <dd>
+          <div *ngIf="report.document">
+            <a (click)="openFile(report.documentContentType, report.document)">
+              <img
+                [src]="'data:' + report.documentContentType + ';base64,' + report.document"
+                style="max-width: 100%;"
+                alt="report image"
+              />
+            </a>
+            {{ report.documentContentType }}, {{ byteSize(report.document) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="shedulingSolutionApp.report.description">Description</span></dt>
+        <dd>
+          <span>{{ report.description }}</span>
+        </dd>
+      </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
+      <button type="submit" (click)="previousState()" class="btn btn-info">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
 
-            <button type="button"
-                    [routerLink]="['/report', report.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
-        </div>
+      <button type="button" [routerLink]="['/report', report.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
     </div>
+  </div>
 </div>

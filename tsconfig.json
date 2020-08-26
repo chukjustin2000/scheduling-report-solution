@@ -24,5 +24,6 @@
     "genDir": "target/classes/aot",
     "fullTemplateTypeCheck": true,
     "preserveWhitespaces": true
-  }
+  },
+  "noImplicitAny": false
 }

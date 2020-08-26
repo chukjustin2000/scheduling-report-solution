@@ -1,106 +1,191 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-report-heading" jhiTranslate="shedulingSolutionApp.report.home.createOrEditLabel">Create or edit a Report</h2>
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-report-heading" jhiTranslate="shedulingSolutionApp.report.home.createOrEditLabel">Create or edit a Report</h2>
 
-            <div>
-                <jhi-alert-error></jhi-alert-error>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
+        <div class="form-group" [hidden]="!editForm.get('id')!.value">
+          <label for="id" jhiTranslate="global.field.id">ID</label>
+          <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.name" for="field_name">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
-                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.occurenceMode" for="field_occurenceMode">Occurence Mode</label>
-                    <select class="form-control" name="occurenceMode" formControlName="occurenceMode" id="field_occurenceMode">
-                        <option value="ONEOFF">{{ 'shedulingSolutionApp.OccurenceMode.ONEOFF' | translate }}</option>
-                        <!-- <option value="CANCEL">{{ 'shedulingSolutionApp.OccurenceMode.CANCEL' | translate }}</option> -->
-                        <option value="CERTAINDATE">{{ 'shedulingSolutionApp.OccurenceMode.CERTAINDATE' | translate }}</option>
-                        <option value="RECURRING">{{ 'shedulingSolutionApp.OccurenceMode.RECURRING' | translate }}</option>
-                    </select>
-                </div>
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.occurenceMode" for="field_occurenceMode"
+            >Occurence Mode</label
+          >
+          <select
+            class="form-control"
+            #occurenceMode
+            name="occurenceMode"
+            formControlName="occurenceMode"
+            id="field_occurenceMode"
+            (change)="onChangeScheduleType(occurenceMode.value)"
+          >
+            <option value="ONEOFF">{{ 'shedulingSolutionApp.OccurenceMode.ONEOFF' | translate }}</option>
+            <!-- <option value="CANCEL">{{ 'shedulingSolutionApp.OccurenceMode.CANCEL' | translate }}</option> -->
+            <option value="CERTAINDATE">{{ 'shedulingSolutionApp.OccurenceMode.CERTAINDATE' | translate }}</option>
+            <option value="RECURRING">{{ 'shedulingSolutionApp.OccurenceMode.RECURRING' | translate }}</option>
+          </select>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.oneOffSchedule" for="field_oneOffSchedule">One Off Schedule</label>
-                    <div class="d-flex">
-                        <input id="field_oneOffSchedule" type="datetime-local" class="form-control" name="oneOffSchedule" formControlName="oneOffSchedule" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
+        <div class="form-group" *ngIf="isOneOff">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.oneOffSchedule" for="field_oneOffSchedule"
+            >One Off Schedule</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_oneOffSchedule"
+              type="datetime-local"
+              class="form-control"
+              name="oneOffSchedule"
+              formControlName="oneOffSchedule"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.timeFromSchedule" for="field_timeFromSchedule">Time From Schedule</label>
-                    <div class="d-flex">
-                        <input id="field_timeFromSchedule" type="datetime-local" class="form-control" name="timeFromSchedule" formControlName="timeFromSchedule" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
+        <div class="form-group" *ngIf="!isOneOff && !isRecurring">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.timeFromSchedule" for="field_timeFromSchedule"
+            >Time From Schedule</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_timeFromSchedule"
+              type="datetime-local"
+              class="form-control"
+              name="timeFromSchedule"
+              formControlName="timeFromSchedule"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.timeToSchedule" for="field_timeToSchedule">Time To Schedule</label>
-                    <div class="d-flex">
-                        <input id="field_timeToSchedule" type="datetime-local" class="form-control" name="timeToSchedule" formControlName="timeToSchedule" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
+        <div class="form-group" *ngIf="!isOneOff && !isRecurring">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.timeToSchedule" for="field_timeToSchedule"
+            >Time To Schedule</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_timeToSchedule"
+              type="datetime-local"
+              class="form-control"
+              name="timeToSchedule"
+              formControlName="timeToSchedule"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.timeNextSchedule" for="field_timeNextSchedule">Time Next Schedule</label>
-                    <div class="d-flex">
-                        <input id="field_timeNextSchedule" type="datetime-local" class="form-control" name="timeNextSchedule" formControlName="timeNextSchedule" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
+        <div class="form-group" *ngIf="!isOneOff && isRecurring">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.timeNextSchedule" for="field_timeNextSchedule"
+            >Time Next Schedule</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_timeNextSchedule"
+              type="datetime-local"
+              class="form-control"
+              name="timeNextSchedule"
+              formControlName="timeNextSchedule"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.document" for="field_document">Document</label>
-                    <div>
-                        <img [src]="'data:' + editForm.get('documentContentType')!.value + ';base64,' + editForm.get('document')!.value" style="max-height: 100px;" *ngIf="editForm.get('document')!.value" alt="report image"/>
-                        <div *ngIf="editForm.get('document')!.value" class="form-text text-danger clearfix">
-                            <span class="pull-left">{{ editForm.get('documentContentType')!.value }}, {{ byteSize(editForm.get('document')!.value) }}</span>
-                            <button type="button" (click)="clearInputImage('document', 'documentContentType', 'file_document')" class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_document" (change)="setFileData($event, 'document', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="document" id="field_document"
-                           formControlName="document"/>
-                    <input type="hidden" class="form-control" name="documentContentType" id="field_documentContentType"
-                           formControlName="documentContentType" />
-                    <div *ngIf="editForm.get('document')!.invalid && (editForm.get('document')!.dirty || editForm.get('document')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('document')?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" [translateValues]="{ max: 500000 }">
-                            This field cannot be more than 500000.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.description" for="field_description">Description</label>
-                    <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
-                </div>
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.document" for="field_document">Document</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('documentContentType')!.value + ';base64,' + editForm.get('document')!.value"
+              style="max-height: 100px;"
+              *ngIf="editForm.get('document')!.value"
+              alt="report image"
+            />
+            <div *ngIf="editForm.get('document')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left"
+                >{{ editForm.get('documentContentType')!.value }}, {{ byteSize(editForm.get('document')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('document', 'documentContentType', 'file_document')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
             </div>
+            <input
+              type="file"
+              id="file_document"
+              (change)="setFileData($event, 'document', true)"
+              accept=".doc,.docx,.pdf,application/msword, .xls, .xlsx"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="document" id="field_document" formControlName="document" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="documentContentType"
+            id="field_documentContentType"
+            formControlName="documentContentType"
+          />
+          <div *ngIf="editForm.get('document')!.invalid && (editForm.get('document')!.dirty || editForm.get('document')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('document')?.errors?.maxbytes"
+              jhiTranslate="entity.validation.maxbytes"
+              [translateValues]="{ max: 500000 }"
+            >
+              This field cannot be more than 500000.
+            </small>
+          </div>
+        </div>
 
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.description" for="field_description"
+            >Description</label
+          >
+          <textarea type="text" class="form-control" name="description" id="field_description" formControlName="description"></textarea>
+        </div>
+        <!--  -->
+        <!-- <div class="form-group">
+          <label class="form-control-label" jhiTranslate="shedulingSolutionApp.report.recipients" for="field_description"
+            >Description</label
+          >
+          <ng-select
+            class="form-control"
+            id="recipients"
+            formControlName="recipients"
+            [items]="recipientList"
+            bindLabel="name"
+            appendTo="body"
+            bindValue="id"
+          >
+          </ng-select>
+        </div> -->
+      </div>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </form>
-    </div>
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

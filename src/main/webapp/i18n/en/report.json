@@ -3,8 +3,8 @@
     "report": {
       "home": {
         "title": "Reports",
-        "createLabel": "Create a new Report",
-        "createOrEditLabel": "Create or edit a Report",
+        "createLabel": "Create a new Schedule Report",
+        "createOrEditLabel": "Create or edit a Schedule Report",
         "notFound": "No Reports found"
       },
       "created": "A new Report is created with identifier {{ param }}",
@@ -17,14 +17,15 @@
         "title": "Report"
       },
       "name": "Name",
-      "occurenceMode": "Occurence Mode",
-      "oneOffSchedule": "One Off Schedule",
-      "timeFromSchedule": "Time From Schedule",
-      "timeToSchedule": "Time To Schedule",
-      "timeNextSchedule": "Time Next Schedule",
+      "occurenceMode": "Schedule Type",
+      "oneOffSchedule": "One Off (Schedule Time)",
+      "timeFromSchedule": "From (Schedule Time)",
+      "timeToSchedule": "To (Schedule Time)",
+      "timeNextSchedule": "Schedule",
       "document": "Document",
       "description": "Description",
-      "recipients": "Recipients"
+      "recipients": "Select Recipients",
+      "cancel": "Cancel Schedule"
     }
   }
 }

@@ -11,6 +11,10 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IReport, Report } from 'app/shared/model/report.model';
 import { ReportService } from './report.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { OccurenceMode } from 'app/shared/model/enumerations/occurence-mode.model';
+import { IRecipient } from 'app/shared/model/recipient.model';
+import { map } from 'rxjs/operators';
+import { RecipientService } from '../recipient/recipient.service';
 
 @Component({
   selector: 'jhi-report-update',
@@ -18,6 +22,10 @@ import { AlertError } from 'app/shared/alert/alert-error.model';
 })
 export class ReportUpdateComponent implements OnInit {
   isSaving = false;
+  isOneOff = false;
+  isRecurring = false;
+  today = moment().startOf('day');
+  recipientList?: IRecipient[];
 
   editForm = this.fb.group({
     id: [],
@@ -38,21 +46,43 @@ export class ReportUpdateComponent implements OnInit {
     protected reportService: ReportService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
+    protected recipientService: RecipientService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ report }) => {
       if (!report.id) {
-        const today = moment().startOf('day');
-        report.oneOffSchedule = today;
-        report.timeFromSchedule = today;
-        report.timeToSchedule = today;
-        report.timeNextSchedule = today;
+        report.oneOffSchedule = this.today;
+        report.timeFromSchedule = this.today;
+        report.timeToSchedule = this.today;
+        report.timeNextSchedule = this.today;
       }
-
+      if (report.type === OccurenceMode.ONEOFF) {
+        this.isOneOff = true;
+        this.isRecurring = false;
+        console.log(this.isOneOff);
+      } else if (report.type === OccurenceMode.CERTAINDATE) {
+        this.isOneOff = false;
+        this.isRecurring = false;
+        console.log(this.isOneOff);
+      } else {
+        this.isOneOff = false;
+        this.isRecurring = true;
+      }
       this.updateForm(report);
     });
+
+    this.recipientService
+      .query({ all: '' })
+      .pipe(
+        map((res: HttpResponse<IRecipient[]>) => {
+          return res.body || [];
+        })
+      )
+      .subscribe((resBody: IRecipient[] | undefined) => {
+        this.recipientList = resBody;
+      });
   }
 
   updateForm(report: IReport): void {
@@ -83,6 +113,7 @@ export class ReportUpdateComponent implements OnInit {
       this.eventManager.broadcast(
         new JhiEventWithContent<AlertError>('shedulingSolutionApp.error', { ...err, key: 'error.file.' + err.key })
       );
+      console.log(err);
     });
   }
 
@@ -103,6 +134,7 @@ export class ReportUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const report = this.createFromForm();
+    console.log(report);
     if (report.id !== undefined) {
       this.subscribeToSaveResponse(this.reportService.update(report));
     } else {
@@ -148,5 +180,20 @@ export class ReportUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  onChangeScheduleType(type: OccurenceMode): void {
+    if (type === OccurenceMode.ONEOFF) {
+      this.isOneOff = true;
+      this.isRecurring = false;
+      console.log(this.isOneOff);
+    } else if (type === OccurenceMode.CERTAINDATE) {
+      this.isOneOff = false;
+      this.isRecurring = false;
+      console.log(this.isOneOff);
+    } else {
+      this.isOneOff = false;
+      this.isRecurring = true;
+    }
   }
 }
